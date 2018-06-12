@@ -1,0 +1,9 @@
+#!/bin/sh
+
+sleep 20
+su ec2-user
+chmod 700 /home/ec2-user/.ssh
+ssh-keygen -t rsa -b 4096 -f /home/ec2-user/.ssh/id_rsa -q -N ""
+chmod 700 /home/ec2-user/.ssh/*
+aws s3 cp /home/ec2-user/.ssh/id_rsa.pub s3://harrytransfer1/id_rsa.pub
+
